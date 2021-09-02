@@ -3,12 +3,16 @@ import { Box, Flex, Spinner } from '@chakra-ui/react'
 import type { NextPage } from 'next'
 import GridItems from '../components/GridItems'
 import SearchBar from '../components/SearchBar'
-import { GET_MISSIONS_BY_NAME } from '../queries/Missions' 
+import client from '../config/ApolloClient'
+import { GET_MISSIONS, GET_MISSIONS_BY_NAME } from '../queries/Missions' 
 
 
+interface IProps {
+  data: any
+}
 
 
-const Home: NextPage = () => {
+const Home: NextPage<IProps> = (props:IProps) => {
   
   const [executeSearch, { data, loading }] = useLazyQuery(GET_MISSIONS_BY_NAME)
  
@@ -22,6 +26,8 @@ const Home: NextPage = () => {
 
   return (
     <>
+      {JSON.stringify(props.data)}
+      {JSON.stringify(data)}
       <Box pl="5%" pr="5%" bg="gray.100">
         <Box pt={50} pb={5}>
 
@@ -49,6 +55,16 @@ const Home: NextPage = () => {
       </Box>
     </>
   )
+}
+
+Home.getInitialProps = async ({ req }) => {
+  const { data } = await client.query({
+    query: GET_MISSIONS
+  });
+
+  return {
+    data: data
+  };
 }
 
 export default Home

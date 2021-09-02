@@ -8,3 +8,11 @@ export const GET_MISSIONS_BY_NAME = gql`
         }
     }
 `
+
+export const GET_MISSIONS = gql`
+    query GetMissions {
+        launchesPast(limit:10) {
+            mission_name            
+        }
+    }
+`
