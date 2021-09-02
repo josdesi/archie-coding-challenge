@@ -1,13 +1,24 @@
-import { Box, Button, SimpleGrid } from '@chakra-ui/react'
+import { gql, useQuery } from '@apollo/client'
+import { Box } from '@chakra-ui/react'
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import Card from '../components/Card'
 import GridItems from '../components/GridItems'
 import SearchBar from '../components/SearchBar'
-import styles from '../styles/Home.module.css'
+
+
+
+const QUERY = gql`
+  {
+    launchesPast(limit: 10) {
+      mission_name
+    }
+  }
+`
 
 const Home: NextPage = () => {
+
+  const { data } = useQuery(QUERY)
+  console.log(data)
+
   return (
     <>
       <Box pl="5%" pr="5%" bg="gray.100">
@@ -17,7 +28,6 @@ const Home: NextPage = () => {
         </Box>
         
         <Box borderWidth="1px" borderRadius="xl" bg="white">
-
           <GridItems />
         </Box>
 
