@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
-import { Box } from '@chakra-ui/react'
+import { Box, Flex, Spinner } from '@chakra-ui/react'
 import type { NextPage } from 'next'
 import GridItems from '../components/GridItems'
 import SearchBar from '../components/SearchBar'
@@ -16,7 +16,7 @@ const QUERY = gql`
 
 const Home: NextPage = () => {
 
-  const { data } = useQuery(QUERY)
+  const { data, loading, error } = useQuery(QUERY)
   console.log(data)
 
   return (
@@ -28,7 +28,21 @@ const Home: NextPage = () => {
         </Box>
         
         <Box borderWidth="1px" borderRadius="xl" bg="white">
-          <GridItems />
+          {
+              loading ?
+                (
+                  <Flex justifyContent="center" height="100vh" pt={20}>
+                    <Spinner
+                      thickness="4px"
+                      speed="0.65s"
+                      emptyColor="gray.200"
+                      color="blue.500"
+                      size="xl"                    
+                    />
+                  </Flex>
+                ):
+                <GridItems /> 
+            }
         </Box>
 
       </Box>
