@@ -14,6 +14,11 @@ const QUERY = gql`
   }
 `
 
+const searchBarOnChange = (value:string)=>{
+  if(value!="")
+    alert("####: "+value)
+}
+
 const Home: NextPage = () => {
 
   const { data, loading, error } = useQuery(QUERY)
@@ -24,7 +29,7 @@ const Home: NextPage = () => {
       <Box pl="5%" pr="5%" bg="gray.100">
         <Box pt={50} pb={5}>
 
-          <SearchBar />
+          <SearchBar onChange={searchBarOnChange}/>
         </Box>
         
         <Box borderWidth="1px" borderRadius="xl" bg="white">
