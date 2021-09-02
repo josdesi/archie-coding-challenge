@@ -26,7 +26,7 @@ export default function SearchBar(props:IProps) {
                 <SearchIcon ml={5} mr={3} />
                 <Input 
                     variant="unstyled" 
-                    placeholder="Search by missions" 
+                    placeholder="Search by mission name" 
                     onChange={(e) => debounced(e.target.value)}
                     />
             </Flex>

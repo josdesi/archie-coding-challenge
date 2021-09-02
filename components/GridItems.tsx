@@ -4,8 +4,7 @@ import Card from './Card'
 
 
 interface IProps {
-    data:any,
-    type:string
+    data:any
 }
 
 export default function GridItems(props:IProps) {
@@ -21,13 +20,12 @@ export default function GridItems(props:IProps) {
                         (props.data?.launchesPast)?.map((item:any) => {
                             return (
                                 <Card
-                                    key={item.id}
-                                    image="https://bit.ly/2k1H1t6"
-                                    title="Mission_Name"
-                                    subtitle="Rocket_Name"
-                                    link="http://www.google.com"
-                                    description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam obcaecati dicta quis quo praesentium quos, voluptatibus officia. Vel iste ea amet sapiente eveniet qui, tempora aliquam nesciunt asperiores, voluptatem quasi?"
-                                />
+                                    image={item.links.flickr_images}
+                                    title={item.mission_name}
+                                    subtitle={item.rocket.rocket_name}
+                                    link={item.links?.article_link}
+                                    description={item?.details}
+                                    />
                             )
                         })
                         : (

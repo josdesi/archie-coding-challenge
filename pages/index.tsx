@@ -28,8 +28,7 @@ const Home: NextPage<IProps> = (props:IProps) => {
   console.log(data)
 
   return (
-    <>
-      {serverSideLoading?"true":"false"}
+    <>      
       <Box pl="5%" pr="5%" bg="gray.100">
         <Box pt={50} pb={5}>
 
