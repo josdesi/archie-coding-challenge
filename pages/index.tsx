@@ -1,6 +1,7 @@
 import { gql, useLazyQuery, useQuery } from '@apollo/client'
 import { Box, Flex, Spinner } from '@chakra-ui/react'
 import type { NextPage } from 'next'
+import { useState } from 'react'
 import GridItems from '../components/GridItems'
 import SearchBar from '../components/SearchBar'
 import client from '../config/ApolloClient'
@@ -13,10 +14,12 @@ interface IProps {
 
 
 const Home: NextPage<IProps> = (props:IProps) => {
-  
+
+  const [serverSideLoading, setServerSideLoading] = useState(true);
   const [executeSearch, { data, loading }] = useLazyQuery(GET_MISSIONS_BY_NAME)
  
   const searchBarOnChange = (value:string)=>{
+    setServerSideLoading(false)
     executeSearch({
       variables: { missionName: value },
     });
@@ -26,8 +29,7 @@ const Home: NextPage<IProps> = (props:IProps) => {
 
   return (
     <>
-      {JSON.stringify(props.data)}
-      {JSON.stringify(data)}
+      {serverSideLoading?"true":"false"}
       <Box pl="5%" pr="5%" bg="gray.100">
         <Box pt={50} pb={5}>
 
