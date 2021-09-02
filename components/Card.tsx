@@ -3,25 +3,36 @@ import { Box, Flex, Image, Text } from '@chakra-ui/react'
 import React from 'react'
 
 
-const paragraph: string = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam obcaecati dicta quis quo praesentium quos, voluptatibus officia. Vel iste ea amet sapiente eveniet qui, tempora aliquam nesciunt asperiores, voluptatem quasi?"
+interface IProps {
+    image:string,
+    title:string,
+    subtitle:string,
+    link:string,
+    description:string
+}
+
+
 const truncateDescription = (str: string) => str?str.substring(0,100)+"...":""
-export default function Card() {
+const onClickIcon = (url:string)=>{
+    window.open(url, "_blank")
+}
+export default function Card(props:IProps) {
     return (
         <div>
             <Box maxW="320px" borderWidth="1px" minHeight="400px" borderRadius="xl">
-                <Image src="https://bit.ly/2k1H1t6" />
+                <Image src={props.image} />
                 <Box p={5}>
                     <Flex alignItems="center" justifyContent="space-between">
                         <Text fontSize="xl" fontWeight="semibold">
-                            Mission_Name
+                            {props.title}
                         </Text>
-                        <ExternalLinkIcon />
+                        <ExternalLinkIcon onClick={()=>{onClickIcon(props.link)}}/>
                     </Flex>
                     <Text color="teal.400">
-                        Rocket_Name
+                        {props.subtitle}
                     </Text>
                     <Text>
-                        {truncateDescription(paragraph)}
+                        {truncateDescription(props.description)}
                     </Text>
                 </Box>
             </Box>
