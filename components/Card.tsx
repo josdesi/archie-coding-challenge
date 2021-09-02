@@ -19,7 +19,7 @@ const onClickIcon = (url:string)=>{
 export default function Card(props:IProps) {
     return (
         <div>
-            <Box maxW="320px" borderWidth="1px" minHeight="400px" borderRadius="xl">
+            <Box borderWidth="1px" minHeight="400px" borderRadius="xl">
                 <Image src={props.image} />
                 <Box p={5}>
                     <Flex alignItems="center" justifyContent="space-between">
