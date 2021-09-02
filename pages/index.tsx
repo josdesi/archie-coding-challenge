@@ -38,19 +38,21 @@ const Home: NextPage<IProps> = (props:IProps) => {
         
         <Box borderWidth="1px" borderRadius="xl" bg="white">
           {
-              loading ?
-                (
-                  <Flex justifyContent="center" height="100vh" pt={20}>
-                    <Spinner
-                      thickness="4px"
-                      speed="0.65s"
-                      emptyColor="gray.200"
-                      color="blue.500"
-                      size="xl"                    
-                    />
-                  </Flex>
-                ):
-                <GridItems /> 
+              serverSideLoading ?
+              <GridItems data={props.data} /> :
+                loading ?
+                  (
+                    <Flex justifyContent="center" height="100vh" pt={20}>
+                      <Spinner
+                        thickness="4px"
+                        speed="0.65s"
+                        emptyColor="gray.200"
+                        color="blue.500"
+                        size="xl"
+                      />
+                    </Flex>
+                  ) :
+                  <GridItems data={data} />
             }
         </Box>
 

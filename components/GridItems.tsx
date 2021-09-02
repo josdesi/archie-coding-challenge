@@ -1,14 +1,14 @@
-import { Box, SimpleGrid } from '@chakra-ui/react'
+import { Box, Flex, SimpleGrid, Text } from '@chakra-ui/react'
 import React from 'react'
 import Card from './Card'
 
-let dataDummy: any[] = new Array<any>();
-([...Array(100)]).map((item: number) => {
-    dataDummy.push({
-        id: item
-    })
-})
-export default function GridItems() {
+
+interface IProps {
+    data:any,
+    type:string
+}
+
+export default function GridItems(props:IProps) {
     return (
         <div>
             <Box p={10} justifyContent='center'>
@@ -16,7 +16,9 @@ export default function GridItems() {
                 <SimpleGrid spacing={10} minChildWidth="250px">
 
                     {
-                        dataDummy.map((item) => {
+                        (props.data?.launchesPast.length > 0) ?
+
+                        (props.data?.launchesPast)?.map((item:any) => {
                             return (
                                 <Card
                                     key={item.id}
@@ -28,6 +30,13 @@ export default function GridItems() {
                                 />
                             )
                         })
+                        : (
+                            <Flex height="100vh">
+                                <Text>
+                                "No matching records"
+                                </Text>
+                            </Flex>
+                        )
                     }
                 </SimpleGrid>
             </Box>
