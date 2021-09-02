@@ -4,15 +4,24 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Card from '../components/Card'
 import GridItems from '../components/GridItems'
+import SearchBar from '../components/SearchBar'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
   return (
     <>
-    <Box p={10} pl="5%" pr="5%" justifyContent='center'>
+      <Box pl="5%" pr="5%" bg="gray.100">
+        <Box pt={50} pb={5}>
 
-      <GridItems />      
-    </Box>
+          <SearchBar />
+        </Box>
+        
+        <Box borderWidth="1px" borderRadius="xl" bg="white">
+
+          <GridItems />
+        </Box>
+
+      </Box>
     </>
   )
 }
