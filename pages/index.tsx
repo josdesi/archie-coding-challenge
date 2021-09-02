@@ -1,27 +1,23 @@
-import { gql, useQuery } from '@apollo/client'
+import { gql, useLazyQuery, useQuery } from '@apollo/client'
 import { Box, Flex, Spinner } from '@chakra-ui/react'
 import type { NextPage } from 'next'
 import GridItems from '../components/GridItems'
 import SearchBar from '../components/SearchBar'
+import { GET_MISSIONS_BY_NAME } from '../queries/Missions' 
 
 
 
-const QUERY = gql`
-  {
-    launchesPast(limit: 10) {
-      mission_name
-    }
-  }
-`
-
-const searchBarOnChange = (value:string)=>{
-  if(value!="")
-    alert("####: "+value)
-}
 
 const Home: NextPage = () => {
+  
+  const [executeSearch, { data, loading }] = useLazyQuery(GET_MISSIONS_BY_NAME)
+ 
+  const searchBarOnChange = (value:string)=>{
+    executeSearch({
+      variables: { missionName: value },
+    });
+  }
 
-  const { data, loading, error } = useQuery(QUERY)
   console.log(data)
 
   return (
