@@ -20,6 +20,7 @@ export default function GridItems(props:IProps) {
                         (props.data?.launchesPast)?.map((item:any) => {
                             return (
                                 <Card
+                                    key={item.id}
                                     image={item.links.flickr_images}
                                     title={item.mission_name}
                                     subtitle={item.rocket.rocket_name}
@@ -31,7 +32,7 @@ export default function GridItems(props:IProps) {
                         : (
                             <Flex height="100vh">
                                 <Text>
-                                "No matching records"
+                                No matching records
                                 </Text>
                             </Flex>
                         )
